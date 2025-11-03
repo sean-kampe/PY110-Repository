@@ -72,8 +72,6 @@ print(is_real_palindrome('123ab321') == False)       # True
 print(is_real_palindrome('Madam') == True)           # True
 print(is_real_palindrome("Madam, I'm Adam") == True) # True
 
-
-
 # Write a function that takes a list of numbers and returns a list with
 # the same number of elements, but with each element's value being the
 # running total from the original list
@@ -105,8 +103,6 @@ print(running_total([]) == [])                    # True
 #         result_list.append(total)
 #
 #     return result_list
-
-
 
 
 # Write a function that takes a string consisting of zero or more
@@ -167,8 +163,6 @@ string = "What's up doc?"
 print(word_sizes(string) == {5: 1, 2: 1, 3: 1})
 
 print(word_sizes('') == {})
-
-
 
 # Given a string of words separated by spaces, write a function that swaps
 # the first and last letters of every word. You may assume that every word
@@ -308,3 +302,27 @@ print(signed_integer_to_string(4321) == "+4321")  # True
 print(signed_integer_to_string(-123) == "-123")   # True
 print(signed_integer_to_string(0) == "0")         # True
 
+
+def dms(num):
+    num = float(num)
+    DEGREE = "\u00B0"
+    total = ''
+    splited = str(num).split('.')
+    print(splited)
+    degrees = splited[0]
+    minute_string = '.' + splited[1]
+    print(minute_string)
+    minutes = float(minute_string) * 60
+    minutes = str(minutes).split('.')
+    seconds = minutes[1]
+    seconds = '.' + seconds
+    minutes = minutes[0]
+    if len(minutes) == 1:
+        minutes = '0' + minutes
+    seconds = float(seconds) * 60
+    seconds = str(int(seconds))
+    quote = '"'
+    if len(seconds) == 1:
+        seconds = '0' + seconds
+    total = degrees + DEGREE + minutes + "'" + seconds + quote
+    return total
