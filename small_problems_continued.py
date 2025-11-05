@@ -71,3 +71,81 @@ list2 = ['a', 'b', 'c']
 expected = [1, "a", 2, "b", 3, "c"]
 print(interleave(list1, list2) == expected)
 
+# Write a function that takes a list of positive integers as input,
+# multiplies all of the integers together, divides the result by the number
+# of entries in the list, and returns the result as a string with the value
+# rounded to three decimal places.
+
+def multiplicative_average(a_list):
+    total = 1
+    for num in a_list:
+        total *= num
+    avg = round(total/len(a_list), 3)
+    avg_str = str(avg)
+    avg = avg_str.split('.')
+    end = avg[1]
+    while len(end) < 3:
+        end = end + '0'
+    average = avg[0] + '.' + end
+    return average
+
+# All of these examples should print True
+print(multiplicative_average([3, 5]) == "7.500")
+print(multiplicative_average([2, 5, 8]) == "26.667")
+print(multiplicative_average([2, 5]) == "5.000")
+print(multiplicative_average([1, 1, 1, 1]) == "0.250")
+print(multiplicative_average([2, 5, 7, 11, 13, 17]) == "28361.667")
+
+
+# Write a function that takes two list arguments, each containing a list of
+# numbers, and returns a new list that contains the product of each pair of
+# numbers from the arguments that have the same index. You may assume that
+# the arguments contain the same number of elements.
+
+def multiply_list(lst1, lst2):
+    zipped = zip(list1, list2)
+    tups = [*zipped]
+    total = [item[0] * item[1] for item in tups]
+    return total
+
+list1 = [3, 5, 7]
+list2 = [9, 10, 11]
+print(multiply_list(list1, list2) == [27, 50, 77])  # True
+
+# Write a function that takes one argument, a positive integer, and returns a
+# list of the digits in the number.
+
+def digit_list(number):
+    lst = [char for char in str(number)]
+    nums = [int(char) for char in lst]
+    return nums
+
+print(digit_list(12345) == [1, 2, 3, 4, 5])       # True
+print(digit_list(7) == [7])                       # True
+print(digit_list(375290) == [3, 7, 5, 2, 9, 0])   # True
+print(digit_list(444) == [4, 4, 4])               # True
+
+
+# Write a function that counts the number of occurrences of each element in a
+# given list. Once counted, print each element alongside the number of
+# occurrences. Consider the words case sensitive e.g. ("suv" != "SUV").
+
+def count_occurrences(a_list):
+    dictionary = {}
+    for item in a_list:
+        dictionary.setdefault(item, 0)
+        dictionary[item] += 1
+    for key, value in dictionary.items():
+        print(key, '=>',value)
+
+vehicles = ['car', 'car', 'truck', 'car', 'SUV', 'truck',
+            'motorcycle', 'motorcycle', 'car', 'truck']
+
+count_occurrences(vehicles)
+
+# Expected outcome
+# your output sequence may appear in a different sequence
+# car => 4
+# truck => 3
+# SUV => 1
+# motorcycle => 2
